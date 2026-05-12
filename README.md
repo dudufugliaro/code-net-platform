@@ -68,7 +68,7 @@ O sistema será desenvolvido como uma aplicação web full stack e terá como fo
 
 Link do quadro Kanban:
 
-[]
+[https://github.com/users/dudufugliaro/projects/2]
 
 ---
 

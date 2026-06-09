@@ -1,12 +1,10 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
-
 
 class Mensagem(models.Model):
     titulo = models.CharField(max_length=120)
     conteudo = models.TextField()
+    autor = models.CharField(max_length=80, default="Anônimo")
     criada_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { User, Calendar, MessageSquare } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const POSTS = [
   {
@@ -29,11 +30,13 @@ const POSTS = [
 ];
 
 export default function Home() {
+  const t = useTranslations('Home');
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Latest Posts</h1>
-        <span className="text-slate-500 dark:text-slate-400 text-sm font-medium">{POSTS.length} posts</span>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('latestPosts')}</h1>
+        <span className="text-slate-500 dark:text-slate-400 text-sm font-medium">{t('postsCount', { count: POSTS.length })}</span>
       </div>
 
       <div className="space-y-4">
@@ -55,7 +58,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <MessageSquare className="w-4 h-4" />
-                  <span>{post.comments} comments</span>
+                  <span>{t('comments', { count: post.comments })}</span>
                 </div>
               </div>
 

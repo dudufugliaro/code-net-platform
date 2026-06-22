@@ -71,6 +71,7 @@ graph TD
     Auth <-->|ORM / SQL| DB
     CRUD <-->|ORM / SQL| DB
     Admin <-->|ORM / SQL| DB
+```
 
 ## 5. Tecnologias e Ferramentas Utilizadas
 

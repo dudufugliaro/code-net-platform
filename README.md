@@ -38,15 +38,15 @@ O sistema será desenvolvido como uma aplicação web full stack e terá como fo
 ### Front-end
 - HTML
 - CSS
-- JavaScript
-- React
+- Next
+- ReactJS
 
 ### Back-end
 - Django
 - API REST
 
 ### Banco de Dados
-- PostgreSQL
+- SQLite
 
 ### Ferramentas
 - Git e GitHub

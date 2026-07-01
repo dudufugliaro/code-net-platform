@@ -17,5 +17,19 @@
     "yourComment": "Seu comentário",
     "commentPlaceholder": "Compartilhe seus pensamentos...",
     "postComment": "Postar Comentário"
+  },
+  "CreatePost": {
+    "title": "Criar Novo Post",
+    "postTitle": "Título do Post",
+    "postTitlePlaceholder": "Digite o título do post...",
+    "authorName": "Nome do Autor",
+    "authorNamePlaceholder": "Seu nome",
+    "content": "Conteúdo (Suporta Markdown)",
+    "preview": "Visualizar",
+    "edit": "Editar",
+    "contentPlaceholder": "Escreva o conteúdo do post usando Markdown...\n\n**Exemplo:**\n# Título\n## Subtítulo\n- Item de lista\n```javascript\nconst codigo = 'aqui';\n```",
+    "publishPost": "Publicar Post",
+    "cancel": "Cancelar",
+    "publishing": "Publicando..."
   }
 }

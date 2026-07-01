@@ -3,10 +3,9 @@ from rest_framework.permissions import AllowAny
 from .models import Mensagem, User
 from .serializers import MensagemSerializer, UserSerializer
 
-class MensagemViewSet(viewsets.ReadOnlyModelViewSet):
+class MensagemViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows messages to be viewed.
-    Using ReadOnlyModelViewSet as we only need to list and retrieve for now on the frontend.
+    API endpoint that allows messages to be viewed and created.
     """
     queryset = Mensagem.objects.all().order_by('-criada_em')
     serializer_class = MensagemSerializer

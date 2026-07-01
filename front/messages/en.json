@@ -17,5 +17,19 @@
     "yourComment": "Your comment",
     "commentPlaceholder": "Share your thoughts...",
     "postComment": "Post Comment"
+  },
+  "CreatePost": {
+    "title": "Create New Post",
+    "postTitle": "Post Title",
+    "postTitlePlaceholder": "Enter your post title...",
+    "authorName": "Author Name",
+    "authorNamePlaceholder": "Your name",
+    "content": "Content (Markdown supported)",
+    "preview": "Preview",
+    "edit": "Edit",
+    "contentPlaceholder": "Write your post content using Markdown...\n\n**Example:**\n# Heading\n## Subheading\n- List item\n```javascript\nconst code = 'here';\n```",
+    "publishPost": "Publish Post",
+    "cancel": "Cancel",
+    "publishing": "Publishing..."
   }
 }

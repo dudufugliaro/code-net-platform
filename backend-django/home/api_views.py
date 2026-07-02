@@ -1,7 +1,15 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from .models import Mensagem, User
-from .serializers import MensagemSerializer, UserSerializer
+from .models import Mensagem, User, Comentario
+from .serializers import MensagemSerializer, UserSerializer, ComentarioSerializer
+
+class ComentarioViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows comments to be viewed and created.
+    """
+    queryset = Comentario.objects.all().order_by('criado_em')
+    serializer_class = ComentarioSerializer
+    permission_classes = [AllowAny]
 
 class MensagemViewSet(viewsets.ModelViewSet):
     """

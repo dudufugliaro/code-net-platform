@@ -21,6 +21,7 @@ from home import api_views
 
 router = routers.DefaultRouter()
 router.register(r'mensagens', api_views.MensagemViewSet, basename='mensagem')
+router.register(r'comentarios', api_views.ComentarioViewSet, basename='comentario')
 router.register(r'users', api_views.UserViewSet, basename='user')
 
 urlpatterns = [

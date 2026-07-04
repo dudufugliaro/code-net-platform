@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Conta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-6">
+
+    <div class="w-full max-w-md bg-slate-800 p-8 rounded-xl shadow-2xl border border-red-500/30 text-center">
+        
+        <h1 class="text-3xl font-bold text-red-500 mb-4">Excluir Conta</h1>
+        
+        <p class="text-slate-300 mb-8 leading-relaxed">
+            Tem certeza que deseja excluir sua conta permanentemente? Esta ação <strong>não pode</strong> ser desfeita e todos os seus dados serão perdidos.
+        </p>
+        
+        <form method="POST" class="flex flex-col gap-4">
+            {% csrf_token %}
+            
+            <button type="submit" 
+                    class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-800">
+                Sim, Excluir Minha Conta
+            </button>
+            
+            <a href="{% url 'perfil_usuario' %}" class="text-slate-400 hover:text-white transition-colors mt-2">
+                Cancelar e Voltar
+            </a>
+        </form>
+        
+    </div>
+
+</body>
+</html>

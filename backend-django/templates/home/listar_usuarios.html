@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade de Desenvolvedores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 p-8 min-h-screen">
+
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-white tracking-tight">Comunidade de Desenvolvedores</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {% for u in usuarios %}
+                <div class="bg-slate-800 p-6 rounded-xl border border-white/5 shadow-lg hover:border-indigo-500/50 transition-colors duration-300">
+                    <h2 class="text-xl font-bold text-indigo-400 mb-1">@{{ u.username }}</h2>
+                    <p class="text-slate-300 font-medium">
+                        {% if u.first_name %}
+                            {{ u.first_name }} {{ u.last_name }}
+                        {% else %}
+                            Usuário sem nome
+                        {% endif %}
+                    </p>
+                    
+                    <hr class="border-white/10 my-4">
+                    
+                    <p class="text-sm text-slate-400">
+                        {{ u.bio|default:"Nenhuma biografia informada ainda." }}
+                    </p>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+</body>
+</html>

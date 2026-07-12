@@ -9,4 +9,6 @@ urlpatterns = [
     path('cadastrar/', views.cadastrar_usuario, name='cadastrar'),
     path('perfil/excluir/', views.excluir_conta, name='excluir_conta'),
     path('login/', auth_views.LoginView.as_view(template_name='home/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
+    path('api/mensagens/', views.api_mensagens, name='api_mensagens'),
 ]

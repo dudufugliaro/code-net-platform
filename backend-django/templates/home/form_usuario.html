@@ -2,35 +2,96 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Usuário</title>
+    <title>Meu Perfil</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilizando os inputs gerados automaticamente pelo Django */
+        .django-form-fields input, .django-form-fields textarea {
+            width: 100%;
+            border-radius: 0.5rem;
+            background-color: #1e293b; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 0.75rem;
+            color: #f1f5f9;
+            margin-top: 0.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-6">
 
-    <div class="w-full max-w-xl bg-slate-800 p-8 rounded-xl shadow-2xl border border-white/5">
+    <div class="w-full max-w-md bg-slate-800 p-8 rounded-xl shadow-2xl border border-white/5">
         
-        <div class="mb-6">
-            <h1 class="text-2xl font-bold text-white tracking-tight">Informações do Perfil</h1>
-            <p class="text-sm text-slate-400 mt-1">Atualize os dados da sua conta de desenvolvedor.</p>
+        <div class="mb-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-white tracking-tight">Meu Perfil</h1>
+            <a href="{% url 'index' %}" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Voltar</a>
         </div>
 
-        <form method="POST" class="space-y-5">
+        <form method="POST" class="space-y-4">
             {% csrf_token %}
             
-            <div class="django-form-fields space-y-4">
+            <!-- Os campos do Django vão aparecer aqui dentro -->
+            <div class="django-form-fields" id="campos-formulario">
                 {{ form.as_p }}
             </div>
 
-            <div class="pt-2">
-                <button type="submit" 
-                        class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-800">
+            <!-- Botões de Ação -->
+            <div class="pt-4 flex gap-3">
+                <!-- Botão Editar (Aparece primeiro, não envia o formulário) -->
+                <button type="button" id="btn-editar" 
+                        class="w-full bg-slate-600 hover:bg-slate-500 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                    Editar Dados
+                </button>
+
+                <!-- Botão Salvar (Fica escondido inicialmente) -->
+                <button type="submit" id="btn-salvar" 
+                        class="hidden w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">
                     Salvar Alterações
                 </button>
             </div>
         </form>
 
+        <!-- Link de excluir conta -->
+        <div class="mt-8 pt-6 border-t border-white/10 text-center">
+            <a href="{% url 'excluir_conta' %}" class="text-red-500 hover:text-red-400 text-sm font-medium transition-colors">
+                Deseja excluir sua conta?
+            </a>
+        </div>
     </div>
+
+    <!-- Script para controlar o bloqueio/desbloqueio -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pega todos os inputs e textareas do formulário
+            const campos = document.querySelectorAll('.django-form-fields input, .django-form-fields textarea');
+            const btnEditar = document.getElementById('btn-editar');
+            const btnSalvar = document.getElementById('btn-salvar');
+
+            // 1. Bloqueia todos os campos assim que a página carrega
+            campos.forEach(campo => {
+                campo.disabled = true;
+                // Adiciona um visual mais escuro para indicar que está bloqueado
+                campo.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+
+            // 2. Quando clicar em "Editar"
+            btnEditar.addEventListener('click', function() {
+                // Desbloqueia os campos
+                campos.forEach(campo => {
+                    campo.disabled = false;
+                    campo.classList.remove('opacity-50', 'cursor-not-allowed');
+                });
+                
+                // Esconde o botão de Editar e mostra o de Salvar
+                btnEditar.classList.add('hidden');
+                btnSalvar.classList.remove('hidden');
+                
+                // Foca automaticamente no primeiro campo (geralmente o Username)
+                if(campos.length > 0) campos[0].focus();
+            });
+        });
+    </script>
 
 </body>
 </html>

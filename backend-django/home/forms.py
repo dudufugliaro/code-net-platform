@@ -28,6 +28,14 @@ class UsuarioForm(forms.ModelForm):
             "bio": forms.Textarea(attrs={"class": INPUT, "rows": 3}),
             "birth_date": forms.DateInput(attrs={"class": INPUT, "type": "date"}), 
         }
+        def clean_email(self):
+            email = self.cleaned_data.get('email')
+            
+            # Verifica se já existe alguém com este e-mail no banco
+            if User.objects.filter(email=email).exists():
+                raise forms.ValidationError("Este e-mail já está em uso. Por favor, escolha outro.")
+                
+            return email
 
 class RegistroForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):

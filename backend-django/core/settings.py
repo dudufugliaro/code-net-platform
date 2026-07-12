@@ -132,3 +132,7 @@ AUTH_USER_MODEL = 'home.User'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'perfil_usuario'

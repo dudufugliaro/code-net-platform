@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Mensagem, User
 from django.contrib.auth import login,logout
 from .forms import UsuarioForm,RegistroForm
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 def index(request):
     mensagens = Mensagem.objects.all()
@@ -54,3 +57,20 @@ def excluir_conta(request):
     
     # Se for apenas um acesso comum (GET), mostra a tela pedindo confirmação
     return render(request, 'home/excluir_conta.html')
+
+@api_view(['POST', 'GET'])
+def api_mensagens(request):
+    # Se o React enviar um POST (criar mensagem)
+    if request.method == 'POST':
+        # O DRF já converte o request.body JSON para Python no request.data
+        serializer = MensagemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save() # Salva no banco de dados
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    # Se for um GET, apenas listamos todas as mensagens
+    elif request.method == 'GET':
+        mensagens = Mensagem.objects.all().order_by('-criado_em')
+        serializer = MensagemSerializer(mensagens, many=True)
+        return Response(serializer.data)

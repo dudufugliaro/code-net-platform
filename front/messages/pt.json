@@ -1,7 +1,10 @@
 {
   "Layout": {
     "description": "Um blog para desenvolvedores",
-    "newPost": "Novo Post"
+    "newPost": "Novo Post",
+    "login": "Entrar",
+    "logout": "Sair",
+    "register": "Cadastrar"
   },
   "Home": {
     "latestPosts": "Últimos Posts",
@@ -16,7 +19,12 @@
     "namePlaceholder": "João Silva",
     "yourComment": "Seu comentário",
     "commentPlaceholder": "Compartilhe seus pensamentos...",
-    "postComment": "Postar Comentário"
+    "postComment": "Postar Comentário",
+    "reactionCurtida": "Curtida",
+    "reactionAplauso": "Aplauso",
+    "reactionAmei": "Amei",
+    "reactionIdeia": "Boa ideia",
+    "loginToReact": "Faça login para reagir"
   },
   "CreatePost": {
     "title": "Criar Novo Post",
@@ -31,5 +39,27 @@
     "publishPost": "Publicar Post",
     "cancel": "Cancelar",
     "publishing": "Publicando..."
+  },
+  "Login": {
+    "title": "Acessar Conta",
+    "username": "Nome de Usuário",
+    "usernamePlaceholder": "Digite seu usuário",
+    "password": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "submit": "Entrar",
+    "submitting": "Entrando...",
+    "error": "Erro ao fazer login. Verifique suas credenciais."
+  },
+  "Register": {
+    "title": "Criar Conta",
+    "username": "Nome de Usuário",
+    "usernamePlaceholder": "Digite seu usuário",
+    "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "password": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "submit": "Cadastrar",
+    "submitting": "Cadastrando...",
+    "error": "Erro ao criar conta. Tente novamente."
   }
 }

@@ -1,7 +1,10 @@
 {
   "Layout": {
     "description": "A blog for developers",
-    "newPost": "New Post"
+    "newPost": "New Post",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Sign Up"
   },
   "Home": {
     "latestPosts": "Latest Posts",
@@ -16,7 +19,12 @@
     "namePlaceholder": "John Doe",
     "yourComment": "Your comment",
     "commentPlaceholder": "Share your thoughts...",
-    "postComment": "Post Comment"
+    "postComment": "Post Comment",
+    "reactionCurtida": "Curtida",
+    "reactionAplauso": "Aplauso",
+    "reactionAmei": "Amei",
+    "reactionIdeia": "Boa ideia",
+    "loginToReact": "Faça login para reagir"
   },
   "CreatePost": {
     "title": "Create New Post",
@@ -31,5 +39,27 @@
     "publishPost": "Publish Post",
     "cancel": "Cancel",
     "publishing": "Publishing..."
+  },
+  "Login": {
+    "title": "Sign In",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign In",
+    "submitting": "Signing in...",
+    "error": "Login failed. Please check your credentials."
+  },
+  "Register": {
+    "title": "Create Account",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign Up",
+    "submitting": "Signing up...",
+    "error": "Registration failed. Please try again."
   }
 }

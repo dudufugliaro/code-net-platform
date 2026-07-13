@@ -4,13 +4,22 @@ import { useState } from "react";
 import { Send, Eye, Edit2 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { useAuth } from "@/contexts/AuthContext";
+import { useEffect } from "react";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 export default function CreatePostPage() {
   const t = useTranslations('CreatePost');
   const router = useRouter();
+  const { isAuthenticated, accessToken, isLoading } = useAuth();
+  
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push("/login");
+    }
+  }, [isLoading, isAuthenticated, router]);
   
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [isPreview, setIsPreview] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,15 +38,16 @@ export default function CreatePostPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           titulo: title,
-          autor: author.trim() || "Anônimo",
           conteudo: content,
         }),
       });
 
       if (res.ok) {
+        router.refresh();
         router.push("/");
       } else {
         alert("Erro ao criar o post. Verifique o console para mais detalhes.");
@@ -50,6 +60,10 @@ export default function CreatePostPage() {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoading || !isAuthenticated) {
+    return <div className="text-center py-20 text-slate-500">Verificando autenticação...</div>;
+  }
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -69,21 +83,6 @@ export default function CreatePostPage() {
               onChange={(e) => setTitle(e.target.value)}
               placeholder={t('postTitlePlaceholder')}
               required
-              className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-shadow"
-            />
-          </div>
-
-          {/* Author Name */}
-          <div>
-            <label htmlFor="author" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-              {t('authorName')}
-            </label>
-            <input
-              type="text"
-              id="author"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              placeholder={t('authorNamePlaceholder')}
               className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-shadow"
             />
           </div>
@@ -116,7 +115,7 @@ export default function CreatePostPage() {
             {isPreview ? (
               <div className="w-full px-4 py-3 min-h-[300px] border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/50 rounded-lg prose prose-slate dark:prose-invert max-w-none">
                 {content ? (
-                  <p className="whitespace-pre-wrap">{content}</p>
+                  <MarkdownRenderer content={content} />
                 ) : (
                   <p className="text-slate-400 italic">Nothing to preview</p>
                 )}

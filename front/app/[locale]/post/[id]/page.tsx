@@ -3,14 +3,18 @@ import { ArrowLeft, User, Calendar } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import CommentsSection, { Comentario } from "./CommentsSection";
+import ReactionsBar, { ReacoesResumo } from "./ReactionsBar";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 export interface Mensagem {
   id: number;
   titulo: string;
   conteudo: string;
-  autor: string;
+  autor: { username: string } | null;
   criada_em: string;
   comentarios: Comentario[];
+  reacoes_resumo: ReacoesResumo;
+  minha_reacao: string | null;
 }
 
 async function getPost(id: string): Promise<Mensagem | null> {
@@ -59,7 +63,7 @@ export default async function PostPage({
           <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 pb-6 border-b border-slate-100 dark:border-slate-700">
             <div className="flex items-center gap-1.5">
               <User className="w-4 h-4" />
-              <span>{post.autor || "Anônimo"}</span>
+              <span>{post.autor?.username || "Anônimo"}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
@@ -68,11 +72,15 @@ export default async function PostPage({
           </div>
         </header>
 
-        <div className="prose prose-slate max-w-none">
-          <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed whitespace-pre-wrap">
-            {post.conteudo}
-          </p>
+        <div className="prose prose-slate dark:prose-invert max-w-none mb-6">
+          <MarkdownRenderer content={post.conteudo} />
         </div>
+
+        <ReactionsBar
+          postId={post.id}
+          initialResumo={post.reacoes_resumo}
+          initialMinhaReacao={post.minha_reacao}
+        />
       </article>
 
       {/* Interactive Comments Section */}

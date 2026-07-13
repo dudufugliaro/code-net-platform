@@ -13,6 +13,7 @@ class ComentarioSerializer(serializers.ModelSerializer):
 
 class MensagemSerializer(serializers.ModelSerializer):
     comentarios = ComentarioSerializer(many=True, read_only=True)
+    autor = UserSerializer(read_only=True)
     
     class Meta:
         model = Mensagem

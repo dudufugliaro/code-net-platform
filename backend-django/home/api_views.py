@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from .models import Mensagem, User, Comentario
 from .serializers import MensagemSerializer, UserSerializer, ComentarioSerializer
 
@@ -17,7 +17,10 @@ class MensagemViewSet(viewsets.ModelViewSet):
     """
     queryset = Mensagem.objects.all().order_by('-criada_em')
     serializer_class = MensagemSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(autor=self.request.user)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """

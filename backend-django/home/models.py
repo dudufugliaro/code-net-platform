@@ -2,10 +2,12 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractUser
 
+from django.conf import settings
+
 class Mensagem(models.Model):
     titulo = models.CharField(max_length=120)
     conteudo = models.TextField()
-    autor = models.CharField(max_length=80, default="Anônimo")
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="mensagens", null=True)
     criada_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:

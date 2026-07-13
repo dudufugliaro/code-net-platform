@@ -67,6 +67,28 @@
         </div>
     </main>
 
+    <!-- Mensagens da Comunidade -->
+    <section class="max-w-4xl mx-auto w-full px-6 pb-16">
+        <h2 class="text-2xl font-bold text-white mb-6 text-center">Últimas mensagens</h2>
+
+        {% if mensagens %}
+            <div class="grid gap-4">
+                {% for mensagem in mensagens %}
+                    <div class="bg-slate-800 border border-white/10 rounded-lg p-5">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="text-lg font-semibold text-indigo-400">{{ mensagem.titulo }}</h3>
+                            <span class="text-xs text-slate-500">{{ mensagem.criada_em|date:"d/m/Y H:i" }}</span>
+                        </div>
+                        <p class="text-slate-300 mb-2">{{ mensagem.conteudo }}</p>
+                        <span class="text-sm text-slate-500">por {{ mensagem.autor }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-slate-500 text-center">Nenhuma mensagem cadastrada ainda.</p>
+        {% endif %}
+    </section>
+
     <!-- Rodapé Simples -->
     <footer class="text-center py-6 border-t border-white/10 text-slate-500 text-sm">
         <p>&copy; 2026 DevNet. Todos os direitos reservados.</p>

@@ -28,7 +28,7 @@ const REACOES = [
 export default function ReactionsBar({ postId, initialResumo, initialMinhaReacao }: ReactionsBarProps) {
   const t = useTranslations("Post");
   const { accessToken, isAuthenticated } = useAuth();
-  const [resumo, setResumo] = useState<ReacoesResumo>(initialResumo);
+  const [resumo, setResumo] = useState<ReacoesResumo>(initialResumo || { curtida: 0, aplauso: 0, amei: 0, ideia: 0 });
   const [minhaReacao, setMinhaReacao] = useState<string | null>(initialMinhaReacao);
   const [isSending, setIsSending] = useState(false);
 

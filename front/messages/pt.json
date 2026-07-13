@@ -3,7 +3,8 @@
     "description": "Um blog para desenvolvedores",
     "newPost": "Novo Post",
     "login": "Entrar",
-    "logout": "Sair"
+    "logout": "Sair",
+    "register": "Cadastrar"
   },
   "Home": {
     "latestPosts": "Últimos Posts",
@@ -48,5 +49,17 @@
     "submit": "Entrar",
     "submitting": "Entrando...",
     "error": "Erro ao fazer login. Verifique suas credenciais."
+  },
+  "Register": {
+    "title": "Criar Conta",
+    "username": "Nome de Usuário",
+    "usernamePlaceholder": "Digite seu usuário",
+    "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "password": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "submit": "Cadastrar",
+    "submitting": "Cadastrando...",
+    "error": "Erro ao criar conta. Tente novamente."
   }
 }

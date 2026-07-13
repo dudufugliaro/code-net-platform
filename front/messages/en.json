@@ -3,7 +3,8 @@
     "description": "A blog for developers",
     "newPost": "New Post",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "register": "Sign Up"
   },
   "Home": {
     "latestPosts": "Latest Posts",
@@ -48,5 +49,17 @@
     "submit": "Sign In",
     "submitting": "Signing in...",
     "error": "Login failed. Please check your credentials."
+  },
+  "Register": {
+    "title": "Create Account",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign Up",
+    "submitting": "Signing up...",
+    "error": "Registration failed. Please try again."
   }
 }

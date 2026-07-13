@@ -6,6 +6,9 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import { useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function CreatePostPage() {
   const t = useTranslations('CreatePost');
@@ -114,7 +117,30 @@ export default function CreatePostPage() {
             {isPreview ? (
               <div className="w-full px-4 py-3 min-h-[300px] border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/50 rounded-lg prose prose-slate dark:prose-invert max-w-none">
                 {content ? (
-                  <p className="whitespace-pre-wrap">{content}</p>
+                  <ReactMarkdown
+                    components={{
+                      code({ node, className, children, ...props }: any) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        const isInline = props.inline ?? false;
+                        return !isInline && match ? (
+                          <SyntaxHighlighter
+                            {...props}
+                            style={vscDarkPlus}
+                            language={match[1]}
+                            PreTag="div"
+                          >
+                            {String(children).replace(/\n$/, "")}
+                          </SyntaxHighlighter>
+                        ) : (
+                          <code {...props} className={className}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  >
+                    {content}
+                  </ReactMarkdown>
                 ) : (
                   <p className="text-slate-400 italic">Nothing to preview</p>
                 )}

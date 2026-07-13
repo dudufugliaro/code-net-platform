@@ -4,6 +4,9 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import CommentsSection, { Comentario } from "./CommentsSection";
 import ReactionsBar, { ReacoesResumo } from "./ReactionsBar";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export interface Mensagem {
   id: number;
@@ -71,10 +74,31 @@ export default async function PostPage({
           </div>
         </header>
 
-        <div className="prose prose-slate max-w-none">
-          <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed whitespace-pre-wrap">
+        <div className="prose prose-slate dark:prose-invert max-w-none mb-6">
+          <ReactMarkdown
+            components={{
+              code({ node, className, children, ...props }: any) {
+                const match = /language-(\w+)/.exec(className || "");
+                const isInline = props.inline ?? false;
+                return !isInline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    style={vscDarkPlus}
+                    language={match[1]}
+                    PreTag="div"
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
             {post.conteudo}
-          </p>
+          </ReactMarkdown>
         </div>
 
         <ReactionsBar

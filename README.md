@@ -33,12 +33,12 @@ O sistema será desenvolvido como uma aplicação web full stack e terá como fo
 
 ---
 
-## 👨‍💻 Tecnologias Previstas
+## 👨‍💻 Tecnologias Utilizadas
 
 ### Front-end
 - HTML
 - CSS
-- Next
+- Next.js
 - ReactJS
 
 ### Back-end
@@ -51,9 +51,51 @@ O sistema será desenvolvido como uma aplicação web full stack e terá como fo
 ### Ferramentas
 - Git e GitHub
 - Kanban para gerenciamento ágil
-- Docker (implementação futura)
+- Docker (Ambiente de desenvolvimento Back-end)
 
 ---
+
+## 🚀 Como Executar o Projeto Localmente
+
+### Prerrequisitos
+Antes de começar, você vai precisar ter instalado em sua máquina:
+- [Git](https://git-scm.com)
+- [Docker e Docker Compose](https://www.docker.com/) (para o Back-end)
+- [Node.js](https://nodejs.org/) e **npm** (para o Front-end)
+
+### 1. Clonar o Repositório
+```bash
+# Clone este repositório
+git clone [https://github.com/dudufugliaro/CodeNet.git](https://github.com/dudufugliaro/CodeNet.git)
+
+# Acesse a pasta do projeto
+cd CodeNet
+```
+
+### 2. Executar o Back-end (Django + Docker)
+```bash
+# Acesse a pasta do back-end
+cd backend-django
+
+# Suba o container com o Docker Compose
+docker compose up --build
+```
+O servidor do back-end iniciará em: http://localhost:8000 <br>
+O painel administrativo do Django estará disponível em: http://localhost:8000/admin
+
+### 3. Executar o Front-end (Next.js)
+Em um novo terminal, navegue até a pasta do front-end para instalar as dependências e rodar a aplicação.
+```bash
+# Acesse a pasta do front-end (ajuste o caminho se necessário)
+cd frontend
+
+# Instale as dependências do projeto
+npm install
+
+# Inicie o servidor de desenvolvimento
+npm run dev
+```
+O servidor do front-end iniciará em: http://localhost:3000
 
 ## 👥 Integrantes da Equipe
 

@@ -8,7 +8,7 @@ export interface Mensagem {
   id: number;
   titulo: string;
   conteudo: string;
-  autor: string;
+  autor: { username: string } | null;
   criada_em: string;
   comentarios: Comentario[];
 }
@@ -59,7 +59,7 @@ export default async function PostPage({
           <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 pb-6 border-b border-slate-100 dark:border-slate-700">
             <div className="flex items-center gap-1.5">
               <User className="w-4 h-4" />
-              <span>{post.autor || "Anônimo"}</span>
+              <span>{post.autor?.username || "Anônimo"}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />

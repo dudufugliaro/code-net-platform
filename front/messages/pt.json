@@ -1,7 +1,9 @@
 {
   "Layout": {
     "description": "Um blog para desenvolvedores",
-    "newPost": "Novo Post"
+    "newPost": "Novo Post",
+    "login": "Entrar",
+    "logout": "Sair"
   },
   "Home": {
     "latestPosts": "Últimos Posts",
@@ -31,5 +33,15 @@
     "publishPost": "Publicar Post",
     "cancel": "Cancelar",
     "publishing": "Publicando..."
+  },
+  "Login": {
+    "title": "Acessar Conta",
+    "username": "Nome de Usuário",
+    "usernamePlaceholder": "Digite seu usuário",
+    "password": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "submit": "Entrar",
+    "submitting": "Entrando...",
+    "error": "Erro ao fazer login. Verifique suas credenciais."
   }
 }

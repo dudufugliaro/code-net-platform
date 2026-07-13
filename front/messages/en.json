@@ -1,7 +1,9 @@
 {
   "Layout": {
     "description": "A blog for developers",
-    "newPost": "New Post"
+    "newPost": "New Post",
+    "login": "Login",
+    "logout": "Logout"
   },
   "Home": {
     "latestPosts": "Latest Posts",
@@ -31,5 +33,15 @@
     "publishPost": "Publish Post",
     "cancel": "Cancel",
     "publishing": "Publishing..."
+  },
+  "Login": {
+    "title": "Sign In",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign In",
+    "submitting": "Signing in...",
+    "error": "Login failed. Please check your credentials."
   }
 }

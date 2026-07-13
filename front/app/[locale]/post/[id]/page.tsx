@@ -3,6 +3,7 @@ import { ArrowLeft, User, Calendar } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import CommentsSection, { Comentario } from "./CommentsSection";
+import ReactionsBar, { ReacoesResumo } from "./ReactionsBar";
 
 export interface Mensagem {
   id: number;
@@ -11,6 +12,8 @@ export interface Mensagem {
   autor: { username: string } | null;
   criada_em: string;
   comentarios: Comentario[];
+  reacoes_resumo: ReacoesResumo;
+  minha_reacao: string | null;
 }
 
 async function getPost(id: string): Promise<Mensagem | null> {
@@ -73,6 +76,12 @@ export default async function PostPage({
             {post.conteudo}
           </p>
         </div>
+
+        <ReactionsBar
+          postId={post.id}
+          initialResumo={post.reacoes_resumo}
+          initialMinhaReacao={post.minha_reacao}
+        />
       </article>
 
       {/* Interactive Comments Section */}

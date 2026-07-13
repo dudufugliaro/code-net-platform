@@ -18,7 +18,12 @@
     "namePlaceholder": "João Silva",
     "yourComment": "Seu comentário",
     "commentPlaceholder": "Compartilhe seus pensamentos...",
-    "postComment": "Postar Comentário"
+    "postComment": "Postar Comentário",
+    "reactionCurtida": "Curtida",
+    "reactionAplauso": "Aplauso",
+    "reactionAmei": "Amei",
+    "reactionIdeia": "Boa ideia",
+    "loginToReact": "Faça login para reagir"
   },
   "CreatePost": {
     "title": "Criar Novo Post",
